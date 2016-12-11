@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/jquery-validate.bootstrap-tooltip.min.js"></script>
+	<style type="text/css">
+		.container {
+			padding-top: 5%;
+		}
+		.errormsg {
+			color: red;
+		}
+		.success {
+
+		}
+	</style>
+	<script type="text/javascript">
+	function validation() {
+			// Name 
+		var un = document.getElementById("name").value;
+		var flag=true;
+		if(un.length==0) {
+			document.getElementById("nameError").innerHTML="Name must be required";
+			flag= false;
+		} else if(!(/^[a-zA-Z]+$/.test(un))) {
+			document.getElementById("nameError").innerHTML="Alphabets only";
+			// document.getElementById("name").focus();
+			flag = false;
+		} else {
+			// document.getElementByClass("errormsg").style("color:green;");
+			document.getElementById("nameError").innerHTML="";
+		}
+			//password
+		var pwd = document.getElementById("pwd").value;
+		if(pwd.length < 8 || pwd.length > 13) {
+			document.getElementById("pwdError").innerHTML="Password must be 8 characters long and not greater than 13 characters";
+				// document.getElementById("pwd").focus();
+				flag = false;
+		} else {
+			document.getElementById("pwdError").innerHTML="";
+		}
+			//DOB
+		var dat = document.getElementById("date").value;
+	    var today = new Date();
+	    var dat_new = new Date(dat);
+	    var age_year = dat_new.getFullYear();
+	    var current_year = today.getFullYear();
+	    var age = current_year - age_year;
+
+	    if (document.getElementById("date").value=="") {
+	    	document.getElementById("dateError").innerHTML="date is null";
+	    	// document.getElementById("date").focus();
+	    	return false;
+	     }
+
+	    else if (age < 13) {
+	     	document.getElementById("dateError").innerHTML = "You are too Young";
+	     	// document.getElementById("date").focus();
+	     	return false
+	     } else {
+	     	document.getElementById("dateError").innerHTML ="";
+	     }
+	     return flag;
+	}	
+
+	</script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6">
+				<form class="form-horizontal" name="myform" onsubmit="return validation();">
+					<div class="form-group">
+						<input type="text" id="name" class="form-control" placeholder="Enter name">
+						<label id="nameError" class="errormsg success"></label>
+					</div>
+					<div class="form-group">
+						<input type="password" name="" id="pwd" class="form-control" placeholder="Enter Password">
+						<label id="pwdError" class="errormsg success"></label>
+					</div>
+					<div class="form-group">
+						<input type="date" name="" class="form-control" id="date">
+						<label id="dateError" class="errormsg success"></label>
+					</div>
+
+					<div class="form-group">
+						<input type="submit" name="" class="btn btn-success" value="Submit">
+						<label id="pwdError" class="errormsg success"></label>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

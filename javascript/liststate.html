@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<select id="country" onchange="listr(this.value)" >
+	
+	<option>Countries</option>
+	<option value="India">India</option>
+	<option value="USA">USA</option>
+	
+</select>
+<div style = "margin-left:300px"; id="states"></div>
+<span id="cn"></span>
+
+<script type="text/javascript">
+var Countries = {'India':{'1':'Kerala','2':'Tamilnadu','3':'Karnataka'},'USA':{'1':'California','2':'Losangels','3':'New York'}};
+function listr(value) {
+	list="<select>";
+	
+		for(country in Countries)	{
+			if(value==country) {
+				selectedCountry = Countries[value];
+				for(state in selectedCountry) {
+				list+="<option>"+selectedCountry[state]+"</option>";
+				}
+			}
+		}
+		
+		document.getElementById("states").innerHTML=list+"</select>";
+
+		
+}
+
+
+</script>
+</body>
+</html>
